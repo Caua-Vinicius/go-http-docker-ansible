@@ -1,0 +1,25 @@
+networks:
+  korp-network:
+    driver: bridge
+
+services:
+  http-server-projeto-korp:
+    build:
+      context: ./app
+    container_name: http-server-projeto-korp
+    networks:
+      - korp-network
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx-korp
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - korp-network
+    depends_on:
+      - http-server-projeto-korp
+    restart: unless-stopped
