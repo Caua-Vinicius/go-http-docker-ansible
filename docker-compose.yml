@@ -6,6 +6,7 @@ services:
   http-server-projeto-korp:
     build:
       context: ./app
+    image: http-server-projeto-korp:latest
     container_name: http-server-projeto-korp
     networks:
       - korp-network
