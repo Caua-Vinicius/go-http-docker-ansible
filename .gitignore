@@ -3,4 +3,3 @@ http-server-projeto-korp
 
 # dependências e cache do Go
 vendor/
-*.sum
