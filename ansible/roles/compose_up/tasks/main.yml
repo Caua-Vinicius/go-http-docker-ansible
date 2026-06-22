@@ -1,0 +1,12 @@
+---
+- name: Copiar todos os arquivos do projeto para a EC2
+  copy:
+    src: "{{ playbook_dir }}/../"
+    dest: /opt/korp-devops-challenge/
+    mode: '0755'
+
+- name: Subir containers com Docker Compose
+  community.docker.docker_compose_v2:
+    project_src: /opt/korp-devops-challenge
+    state: present
+    build: never

@@ -1,0 +1,10 @@
+---
+- name: Provisionar ambiente korp-devops-challenge
+  hosts: all
+  become: true
+
+  roles:
+    - docker_setup
+    - app_build
+    - compose_up
+    - validate

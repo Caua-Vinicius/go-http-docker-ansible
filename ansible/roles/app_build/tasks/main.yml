@@ -1,0 +1,15 @@
+---
+- name: Copiar código da aplicação para a EC2
+  copy:
+    src: "{{ playbook_dir }}/../app"
+    dest: /opt/korp-devops-challenge/
+    mode: '0755'
+
+- name: Buildar imagem Docker da aplicação
+  community.docker.docker_image:
+    name: http-server-projeto-korp
+    tag: latest
+    build:
+      path: /opt/korp-devops-challenge/app
+    source: build
+    state: present
