@@ -1,9 +1,20 @@
 ---
-- name: Copiar todos os arquivos do projeto para a EC2
+- name: Criar diretório base do projeto na EC2
+  file:
+    path: /opt/korp-devops-challenge
+    state: directory
+    mode: '0755'
+
+- name: Copiar artefatos estritos do projeto para a EC2
   copy:
-    src: "{{ playbook_dir }}/../"
+    src: "{{ playbook_dir }}/../{{ item }}"
     dest: /opt/korp-devops-challenge/
     mode: '0755'
+  loop:
+    - app
+    - nginx
+    - monitoring
+    - docker-compose.yml
 
 - name: Subir containers com Docker Compose
   community.docker.docker_compose_v2:
