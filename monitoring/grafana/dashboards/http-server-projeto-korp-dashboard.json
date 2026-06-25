@@ -21,7 +21,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus-korp" },
-          "expr": "service_up",
+          "expr": "up{job=\"http-server-projeto-korp\"}",
           "refId": "A"
         }
       ],
